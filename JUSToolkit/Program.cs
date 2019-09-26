@@ -105,6 +105,10 @@
                 case "-i":
                     Import(inputFormat.ToString(), n, dirToSave, dataToInsert);
                     break;
+
+                case "-iDir":
+                    Import(inputFormat.ToString(), n, dirToSave, dataToInsert);
+                    break;
             }
         }
 
@@ -127,6 +131,42 @@
 
                     n.Transform<Binary2BinInfoTitle, BinaryFormat, BinInfoTitle>()
                     .Transform<BinInfoTitle2Po, BinInfoTitle, Po>()
+                    .Transform<Po2Binary, Po, BinaryFormat>()
+                    .Stream.WriteTo(Path.Combine(outputPath, n.Name + ".po"));
+
+                    break;
+
+                case FORMATPREFIX + "BinDeck":
+
+                    n.Transform<Binary2BinDeck, BinaryFormat, BinDeck>()
+                    .Transform<BinDeck2Po, BinDeck, Po>()
+                    .Transform<Po2Binary, Po, BinaryFormat>()
+                    .Stream.WriteTo(Path.Combine(outputPath, n.Name + ".po"));
+
+                    break;
+
+                case FORMATPREFIX + "BinDeckP":
+
+                    n.Transform<Binary2BinDeckP, BinaryFormat, BinDeckP>()
+                    .Transform<BinDeckP2Po, BinDeckP, Po>()
+                    .Transform<Po2Binary, Po, BinaryFormat>()
+                    .Stream.WriteTo(Path.Combine(outputPath, n.Name + ".po"));
+
+                    break;
+
+                case FORMATPREFIX + "BinGBattleMission":
+
+                    n.Transform<Binary2BinGBattleMission, BinaryFormat, BinGBattleMission>()
+                    .Transform<BinGBattleMission2Po, BinGBattleMission, Po>()
+                    .Transform<Po2Binary, Po, BinaryFormat>()
+                    .Stream.WriteTo(Path.Combine(outputPath, n.Name + ".po"));
+
+                    break;
+
+                case FORMATPREFIX + "BinGGalaxy":
+
+                    n.Transform<Binary2BinGGalaxy, BinaryFormat, BinGGalaxy>()
+                    .Transform<BinGGalaxy2Po, BinGGalaxy, Po>()
                     .Transform<Po2Binary, Po, BinaryFormat>()
                     .Stream.WriteTo(Path.Combine(outputPath, n.Name + ".po"));
 
@@ -188,19 +228,57 @@
             {
                 case FORMATPREFIX + "BinInfoTitle":
 
-                    Po2BinInfoTitle p2b = new Po2BinInfoTitle()
+                    using(Node nodePo = NodeFactory.FromFile(dataToInsert))
                     {
-                        OriginalFile = new Yarhl.IO.DataReader(n.Stream)
+                        Po2BinInfoTitle p2b = new Po2BinInfoTitle()
                         {
-                            DefaultEncoding = Encoding.GetEncoding(932)
-                        }
-                    };
-                    Node nodePo = NodeFactory.FromFile(dataToInsert);
+                            OriginalFile = new Yarhl.IO.DataReader(n.Stream)
+                            {
+                                DefaultEncoding = Encoding.GetEncoding(932)
+                            }
+                        };
 
-                    nodePo.Transform<Po2Binary, BinaryFormat, Po>();
-                    Node nodeBin = nodePo.Transform<Po, BinInfoTitle>(p2b)
-                        .Transform<BinInfoTitle2Bin, BinInfoTitle, BinaryFormat>();
-                    nodeBin.Stream.WriteTo(Path.Combine(dirToSave, n.Name.Remove(n.Name.Length - 4) + "_new.bin"));
+
+                        nodePo.Transform<Po2Binary, BinaryFormat, Po>();
+                        Node nodeBin = nodePo.Transform<Po, BinInfoTitle>(p2b)
+                            .Transform<BinInfoTitle2Bin, BinInfoTitle, BinaryFormat>();
+                        nodeBin.Stream.WriteTo(Path.Combine(dirToSave, n.Name.Remove(n.Name.Length - 4) + "_new.bin"));
+                    }
+                    
+                    
+                    break;
+
+                case FORMATPREFIX + "BinDeck":
+
+                    using(Node nodePo = NodeFactory.FromFile(dataToInsert))
+                    {
+                        Po2BinDeck p2b = new Po2BinDeck()
+                        {
+                            OriginalFile = new Yarhl.IO.DataReader(n.Stream)                            
+                        };
+
+                        nodePo.Transform<Po2Binary, BinaryFormat, Po>();
+                        Node nodeBin = nodePo.Transform<Po, BinDeck>(p2b)
+                            .Transform<BinDeck2Binary, BinDeck, BinaryFormat>();
+                        nodeBin.Stream.WriteTo(Path.Combine(dirToSave, n.Name.Remove(n.Name.Length - 4) + "_new.bin"));
+                    }
+                    
+                    break;
+
+                case FORMATPREFIX + "BinDeckP":
+
+                    using (Node nodePo = NodeFactory.FromFile(dataToInsert))
+                    {
+                        Po2BinDeckP p2b = new Po2BinDeckP()
+                        {
+                            OriginalFile = new Yarhl.IO.DataReader(n.Stream)
+                        };
+
+                        nodePo.Transform<Po2Binary, BinaryFormat, Po>();
+                        Node nodeBin = nodePo.Transform<Po, BinDeckP>(p2b)
+                            .Transform<BinDeckP2Binary, BinDeckP, BinaryFormat>();
+                        nodeBin.Stream.WriteTo(Path.Combine(dirToSave, n.Name.Remove(n.Name.Length - 4) + "_new.bin"));
+                    }
 
                     break;
 

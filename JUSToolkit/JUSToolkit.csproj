@@ -61,10 +61,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\Bin\Binary2BinDeck.cs" />
+    <Compile Include="Converters\Bin\Binary2BinDeckP.cs" />
+    <Compile Include="Converters\Bin\Binary2BinGBattleMission.cs" />
+    <Compile Include="Converters\Bin\Binary2BinGGalaxy.cs" />
     <Compile Include="Converters\Bin\Binary2BinInfoTitle.cs" />
+    <Compile Include="Converters\Bin\BinDeck2Binary.cs" />
+    <Compile Include="Converters\Bin\BinDeck2Po.cs" />
+    <Compile Include="Converters\Bin\BinDeckP2Po.cs" />
+    <Compile Include="Converters\Bin\BinGBattleMission2Po.cs" />
+    <Compile Include="Converters\Bin\BinGGalaxy2Po.cs" />
     <Compile Include="Converters\Bin\BinInfoTitle2Bin.cs" />
     <Compile Include="Converters\Bin\BinInfoTitle2Po.cs" />
+    <Compile Include="Converters\Bin\Po2BinDeck.cs" />
     <Compile Include="Converters\Bin\Po2BinInfoTitle.cs" />
+    <Compile Include="Converters\Bin\BinDeckP2Binary.cs" />
+    <Compile Include="Converters\Bin\Po2BinDeckP.cs" />
+    <Compile Include="Formats\BinDeck.cs" />
+    <Compile Include="Formats\BinDeckP.cs" />
+    <Compile Include="Formats\BinGBattleMission.cs" />
+    <Compile Include="Formats\BinGGalaxy.cs" />
     <Compile Include="Formats\BinInfoTitle.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

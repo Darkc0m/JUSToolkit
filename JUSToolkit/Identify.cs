@@ -59,9 +59,13 @@ namespace JUSToolkit
                 { "title.bin", new BinInfoTitle() },
                 { "commwin.bin", new BinInfoTitle() },
                 { "pname.bin", new BinInfoTitle() },
-                { "bin-InfoDeck", new BinInfoTitle() },
 
-                { "jquiz.bin", new BinQuiz() },
+                { "jgalaxy-battle.bin", new BinGBattleMission() },
+                { "jgalaxy-mission.bin", new BinGBattleMission() },
+
+                { "jgalaxy-jgalaxy.bin", new BinGGalaxy() },
+
+                { "jquiz-jquiz.bin", new BinQuiz() },
             };
 
             alarDictionary = new Dictionary<int, Format>
@@ -123,11 +127,17 @@ namespace JUSToolkit
 
         public Format GetBinFormat(Node node)
         {
-            Regex regex = new Regex("^bin-.*-.*.bin$");
-            if (regex.IsMatch(node.Name))
-            {
-                return binDictionary["bin-InfoDeck"];
-            }
+            Regex regexInfoDeck = new Regex("^bin-.*-.*.bin$");
+            Regex regexDeck = new Regex("^deck-.*-....bin$");
+            Regex regexDeckP = new Regex("^deck-.*-p....bin$");
+
+            if(regexInfoDeck.IsMatch(node.Name))
+                return new BinInfoTitle();
+            if(regexDeck.IsMatch(node.Name))
+                return new BinDeck();
+            if(regexDeckP.IsMatch(node.Name))
+                return new BinDeckP();
+
             return binDictionary[node.Name];
         }
 
