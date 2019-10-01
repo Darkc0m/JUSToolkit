@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Yarhl.FileFormat;
-using Yarhl.Media.Text;
 using JUSToolkit.Formats;
+using Yarhl.Media.Text;
 
 namespace JUSToolkit.Converters.Bin
 {
-    class BinGGalaxy2Po : IConverter<BinGGalaxy, Po>
+    class BinDeckGeneric2Po : IConverter<BinDeck, Po>
     {
-        public Po Convert(BinGGalaxy source)
+        public Po Convert(BinDeck source)
         {
             Po poExport = new Po
             {
@@ -20,10 +20,12 @@ namespace JUSToolkit.Converters.Bin
                     LanguageTeam = "TranScene",
                 }
             };
+
             int i = 0;
-            foreach (string sentence in source.Text)
+            
+            foreach(string entry in source.Text)
             {
-                poExport.Add(new PoEntry(sentence) { Context = i.ToString() });
+                poExport.Add(new PoEntry(entry) { Context = source.Files[i] });
                 i++;
             }
 

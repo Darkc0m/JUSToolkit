@@ -18,7 +18,7 @@ namespace JUSToolkit.Converters.Bin
             DataWriter writer = new DataWriter(bin.Stream);
 
             writer.Write(source.code);
-            writer.Write(source.text, false, Encoding.GetEncoding(932));
+            writer.Write(source.Text.ElementAt(0), false, Encoding.GetEncoding(932));
             while(writer.Stream.Position <= 0x5B)
             {
                 writer.WriteOfType<byte>(0x00);

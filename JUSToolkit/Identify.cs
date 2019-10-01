@@ -12,6 +12,7 @@ namespace JUSToolkit
     using System.Text.RegularExpressions;
     using Yarhl.FileSystem;
     using JUSToolkit.Formats.ALAR;
+    using Yarhl.Media.Text;
 
     /// <summary>
     /// Identify allow us to Identify which Format are we entering to the program.
@@ -59,6 +60,8 @@ namespace JUSToolkit
                 { "title.bin", new BinInfoTitle() },
                 { "commwin.bin", new BinInfoTitle() },
                 { "pname.bin", new BinInfoTitle() },
+
+                { "BinDeck", new BinDeck() },
 
                 { "jgalaxy-battle.bin", new BinGBattleMission() },
                 { "jgalaxy-mission.bin", new BinGBattleMission() },

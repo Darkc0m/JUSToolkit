@@ -1,15 +1,16 @@
 ﻿using Yarhl.FileFormat;
+using System.Collections.Generic;
 
 namespace JUSToolkit.Formats
 {
-    class BinDeck : Format
+    class BinDeck : Bin
     {
-        public string text;
+        public List<string> Files;
         public byte[] code;
 
         public BinDeck()
         {
-
+            Files = new List<string>();
         }
     }
 }

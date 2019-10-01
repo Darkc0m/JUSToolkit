@@ -1,16 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using JUSToolkit.Formats;
+using System.Text;
+using System.Threading.Tasks;
 using Yarhl.FileFormat;
 using Yarhl.IO;
-using System.Collections.Generic;
-using System.Text;
+using JUSToolkit.Formats;
 
 namespace JUSToolkit.Converters.Bin
 {
-    class BinInfoTitle2Bin : IConverter<BinInfoTitle, BinaryFormat>
+    class BinQuiz2Binary : IConverter<BinQuiz, BinaryFormat>
     {
-        public BinaryFormat Convert(BinInfoTitle source)
+        public BinaryFormat Convert(BinQuiz source)
         {
             var bin = new BinaryFormat();
 
@@ -19,13 +20,14 @@ namespace JUSToolkit.Converters.Bin
                 DefaultEncoding = Encoding.GetEncoding(932)
             };
 
-            foreach(int pointer in source.Pointers)
+            foreach(int i in source.Pointers)
             {
-                writer.WriteOfType<Int16>((Int16)pointer);
+                writer.WriteOfType<Int32>(i);
             }
-            foreach(string text in source.Text)
+
+            foreach(string sentence in source.Text)
             {
-                writer.Write(text);
+                writer.Write(sentence);
             }
 
             return bin;

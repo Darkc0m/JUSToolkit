@@ -16,9 +16,10 @@ namespace JUSToolkit.Converters.Bin
 
             var bin = new BinDeck
             {
-                code = OriginalFile.ReadBytes(0x40),
-                text = source.Entries.ElementAt(0).Text
+                code = OriginalFile.ReadBytes(0x40)
             };
+
+            bin.Text.Add(source.Entries.ElementAt(0).Text);
 
             return bin;
         }

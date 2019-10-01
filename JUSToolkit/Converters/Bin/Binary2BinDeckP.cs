@@ -27,6 +27,9 @@ namespace JUSToolkit.Converters.Bin
             sentence = ReadStringUntill(reader, 0x33, Encoding.GetEncoding(932));
             bin.Text.Add(sentence);
 
+            reader.Stream.Position = 0x34;
+            bin.code = reader.ReadBytes(12);
+
             return bin;
         }
 

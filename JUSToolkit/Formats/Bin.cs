@@ -1,14 +1,15 @@
 ﻿namespace JUSToolkit.Formats
 {
     using Yarhl.FileFormat;
-    using System;
     using System.Collections.Generic;
     public class Bin : Format
     {
-        public Dictionary<string, int> Text { get; set; } // String - Pointer
+        public List<string> Text;
+        public List<int> Pointers;
 
         public Bin(){
-            Text = new Dictionary<string, int>();
+            Text = new List<string>();
+            Pointers = new List<int>();
         }
     }
 }

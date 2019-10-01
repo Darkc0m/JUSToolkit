@@ -7,14 +7,14 @@ using Yarhl.FileFormat;
 
 namespace JUSToolkit.Formats
 {
-    class BinGBattleMission : Format
+    class BinGBattleMission : Bin
     {
-        public List<string> Text;
         public static int blockSize = 0xA4;
+        public List<byte[]> code;
 
         public BinGBattleMission()
         {
-            Text = new List<string>();
+            code = new List<byte[]>();
         }
     }
 }

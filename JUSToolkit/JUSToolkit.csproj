@@ -65,18 +65,24 @@
     <Compile Include="Converters\Bin\Binary2BinDeckP.cs" />
     <Compile Include="Converters\Bin\Binary2BinGBattleMission.cs" />
     <Compile Include="Converters\Bin\Binary2BinGGalaxy.cs" />
-    <Compile Include="Converters\Bin\Binary2BinInfoTitle.cs" />
+    <Compile Include="Converters\Bin\Binary2Bin.cs" />
     <Compile Include="Converters\Bin\BinDeck2Binary.cs" />
-    <Compile Include="Converters\Bin\BinDeck2Po.cs" />
+    <Compile Include="Converters\Bin\BinDeck2Nodes.cs" />
+    <Compile Include="Converters\Bin\BinDeckGeneric2Po.cs" />
+    <Compile Include="Converters\Bin\BinDeckP2Nodes.cs" />
     <Compile Include="Converters\Bin\BinDeckP2Po.cs" />
-    <Compile Include="Converters\Bin\BinGBattleMission2Po.cs" />
-    <Compile Include="Converters\Bin\BinGGalaxy2Po.cs" />
-    <Compile Include="Converters\Bin\BinInfoTitle2Bin.cs" />
-    <Compile Include="Converters\Bin\BinInfoTitle2Po.cs" />
+    <Compile Include="Converters\Bin\Bin2Binary.cs" />
+    <Compile Include="Converters\Bin\BinGBattleMission2Binary.cs" />
+    <Compile Include="Converters\Bin\BinGGalaxy2Binary.cs" />
+    <Compile Include="Converters\Bin\BinQuiz2Binary.cs" />
+    <Compile Include="Converters\Bin\Nodes2BinQuiz.cs" />
     <Compile Include="Converters\Bin\Po2BinDeck.cs" />
+    <Compile Include="Converters\Bin\Po2BinGBattleMission.cs" />
+    <Compile Include="Converters\Bin\Po2BinGGalaxy.cs" />
     <Compile Include="Converters\Bin\Po2BinInfoTitle.cs" />
     <Compile Include="Converters\Bin\BinDeckP2Binary.cs" />
     <Compile Include="Converters\Bin\Po2BinDeckP.cs" />
+    <Compile Include="Converters\Bin\Po2BinTutorial.cs" />
     <Compile Include="Formats\BinDeck.cs" />
     <Compile Include="Formats\BinDeckP.cs" />
     <Compile Include="Formats\BinGBattleMission.cs" />
@@ -85,12 +91,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Identify.cs" />
-    <Compile Include="Formats\BinFilename.cs" />
     <Compile Include="Formats\BinTutorial.cs" />
-    <Compile Include="Converters\Bin\BinaryFormat2BinTutorial.cs" />
     <Compile Include="Converters\Bin\Bin2Po.cs" />
     <Compile Include="Formats\Bin.cs" />
-    <Compile Include="Converters\Bin\Binary2BinFilename.cs" />
     <Compile Include="Converters\Alar\BinaryFormat2Alar2.cs" />
     <Compile Include="Converters\Alar\Alar2ToNodes.cs" />
     <Compile Include="Converters\Alar\BinaryFormat2Alar3.cs" />
@@ -104,8 +107,7 @@
     <Compile Include="Formats\ALAR\ALAR2File.cs" />
     <Compile Include="Converters\Alar\Alar3ToNodes.cs" />
     <Compile Include="Formats\BinQuiz.cs" />
-    <Compile Include="Converters\Bin\Binary2BinQuiz.cs" />
-    <Compile Include="Converters\Bin\Quiz2Po.cs" />
+    <Compile Include="Converters\Bin\Bin2JQuizContainer.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

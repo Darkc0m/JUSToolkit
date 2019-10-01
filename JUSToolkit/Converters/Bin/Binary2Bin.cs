@@ -6,9 +6,10 @@ using System.Text;
 
 namespace JUSToolkit.Converters.Bin
 {
-    class Binary2BinInfoTitle : IConverter<BinaryFormat, BinInfoTitle>
+    using JUSToolkit.Formats;
+    class Binary2Bin : IConverter<BinaryFormat, Bin>
     {
-        public BinInfoTitle Convert(BinaryFormat source)
+        public Bin Convert(BinaryFormat source)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
@@ -18,7 +19,8 @@ namespace JUSToolkit.Converters.Bin
                 DefaultEncoding = Encoding.GetEncoding(932)
             };
             string sentence;
-            var bin = new BinInfoTitle();
+
+            var bin = new Bin();
 
             Go2Text(reader);
 
@@ -50,6 +52,11 @@ namespace JUSToolkit.Converters.Bin
                 case 0x0059:
                     reader.Stream.Position += 2;
                     PointerValue = reader.ReadInt16();
+                    break;
+                case 0x0BBE:
+                    reader.Stream.Position = 0x08;
+                    PointerValue = reader.ReadInt32();
+                    reader.Stream.Position -= 2;
                     break;
                 default:
                     break;

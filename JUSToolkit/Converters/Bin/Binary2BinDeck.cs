@@ -18,12 +18,19 @@ namespace JUSToolkit.Converters.Bin
                 DefaultEncoding = Encoding.GetEncoding(932)
             };
 
-            reader.Stream.Position = 0x40;
+            
 
-            var bin = new BinDeck()
-            {
-                text = ReadStringUntill(reader, 0x5B, Encoding.GetEncoding(932))
-            };
+            var bin = new BinDeck();
+            string sentence;
+
+            bin.code = reader.ReadBytes(0x40);
+
+            sentence = ReadStringUntill(reader, 0x5B, Encoding.GetEncoding(932));
+
+            if (string.IsNullOrEmpty(sentence))
+                sentence = "<!empty>";
+
+            bin.Text.Add(sentence);
 
             return bin;
         }

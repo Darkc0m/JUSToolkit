@@ -19,9 +19,9 @@
             };
 
             int i = 0;
-            foreach (KeyValuePair<string, int> entry in source.Text)
+            foreach (string entry in source.Text)
             {
-                string sentence = entry.Key;
+                string sentence = entry;
                 if (string.IsNullOrEmpty(sentence))
                     sentence = "<!empty>";
                 poExport.Add(new PoEntry(sentence) { Context = i.ToString() });
