@@ -411,7 +411,7 @@
                     nodePo.TransformWith<Binary2Po>()
                     .TransformWith<Po2Deck>()
                     .TransformWith<Deck2Binary>()
-                    .Stream.WriteTo(Path.Combine(dirToSave, n.Name + "_new.bin"));
+                    .Stream.WriteTo(Path.Combine(dirToSave, n.Name.Substring(0, n.Name.Length - 4) + "_new.bin"));
 
                     break;
             }
