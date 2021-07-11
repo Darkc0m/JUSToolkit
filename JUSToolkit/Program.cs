@@ -17,6 +17,16 @@
     using Yarhl.IO;
     using Yarhl.FileFormat;
     using System.Text;
+    using JUSToolkit.Converters.Bin.SimpleBin;
+    using JUSToolkit.Converters.Bin.Deck.Export;
+    using JUSToolkit.Converters.Bin.Info.Export;
+    using JUSToolkit.Converters.Bin.ChrB.Export;
+    using JUSToolkit.Converters.Bin.Rulemess.Export;
+    using JUSToolkit.Converters.Bin.Bgm.Export;
+    using JUSToolkit.Converters.Bin.Commwin.Export;
+    using JUSToolkit.Converters.Bin.Piece;
+    using JUSToolkit.Converters.Bin.Piece.Export;
+    using JUSToolkit.Converters.Bin.Deck.Import;
 
     class MainClass
     {
@@ -248,35 +258,75 @@
 
             switch (format)
             {
-                case FORMATPREFIX + "BinTutorial":
+                case FORMATPREFIX + "Bin.Deck":
 
-                    n.TransformWith<BinaryFormat2BinTutorial>()
-                    .TransformWith<Bin2Po>()
+                    n.TransformWith<Binary2Deck>()
+                    .TransformWith<Deck2Po>()
                     .TransformWith<Po2Binary>()
                     .Stream.WriteTo(Path.Combine(outputPath, n.Name + ".po"));
 
                     break;
 
-                case FORMATPREFIX + "BinInfoTitle":
+                case FORMATPREFIX + "Bin.Info":
 
-                    n.TransformWith<Binary2BinInfoTitle>()
-                    .TransformWith<BinInfoTitle2Po>()
+                    n.TransformWith<Binary2Info>()
+                    .TransformWith<Info2Po>()
                     .TransformWith<Po2Binary>()
                     .Stream.WriteTo(Path.Combine(outputPath, n.Name + ".po"));
 
                     break;
 
-                case FORMATPREFIX + "BinQuiz":
+                case FORMATPREFIX + "Bin.SimpleBin":
 
-                    var quizs = n.TransformWith<Binary2BinQuiz>()
-                    .TransformWith<Quiz2Po>();
+                    n.TransformWith<Binary2SimpleBin>()
+                    .TransformWith<SimpleBin2Po>()
+                    .TransformWith<Po2Binary>()
+                    .Stream.WriteTo(Path.Combine(outputPath, n.Name + ".po"));
 
-                    foreach (Node po in quizs.Children) {
-                        string outputFile = Path.Combine(outputPath, po.Name + ".po");
-                        log.Info("Saving " + outputFile);
-                        po.TransformWith<Po2Binary>()
-                        .Stream.WriteTo(outputFile);
-                    }
+                    break;
+
+                case FORMATPREFIX + "Bin.ChrB":
+
+                    n.TransformWith<Binary2ChrB>()
+                    .TransformWith<ChrB2Po>()
+                    .TransformWith<Po2Binary>()
+                    .Stream.WriteTo(Path.Combine(outputPath, n.Name + ".po"));
+
+                    break;
+
+                case FORMATPREFIX + "Bin.Rulemess":
+
+                    n.TransformWith<Binary2Rulemess>()
+                    .TransformWith<Rulemess2Po>()
+                    .TransformWith<Po2Binary>()
+                    .Stream.WriteTo(Path.Combine(outputPath, n.Name + ".po"));
+
+                    break;
+
+                case FORMATPREFIX + "Bin.Bgm":
+
+                    n.TransformWith<Binary2Bgm>()
+                    .TransformWith<Bgm2Po>()
+                    .TransformWith<Po2Binary>()
+                    .Stream.WriteTo(Path.Combine(outputPath, n.Name + ".po"));
+
+                    break;
+
+                case FORMATPREFIX + "Bin.Commwin":
+
+                    n.TransformWith<Binary2Commwin>()
+                    .TransformWith<Commwin2Po>()
+                    .TransformWith<Po2Binary>()
+                    .Stream.WriteTo(Path.Combine(outputPath, n.Name + ".po"));
+
+                    break;
+
+                case FORMATPREFIX + "Bin.Piece":
+
+                    n.TransformWith<Binary2Piece>()
+                    .TransformWith<Piece2Po>()
+                    .TransformWith<Po2Binary>()
+                    .Stream.WriteTo(Path.Combine(outputPath, n.Name + ".po"));
 
                     break;
 
@@ -310,24 +360,6 @@
 
             switch (format)
             {
-                case FORMATPREFIX + "BinInfoTitle":
-
-                    Po2BinInfoTitle p2b = new Po2BinInfoTitle()
-                    {
-                        OriginalFile = new Yarhl.IO.DataReader(n.Stream)
-                        {
-                            DefaultEncoding = Encoding.GetEncoding(932)
-                        }
-                    };
-                    Node nodePo = NodeFactory.FromFile(dataToInsert);
-
-                    nodePo.TransformWith<Po2Binary>();
-                    Node nodeBin = nodePo.TransformWith(p2b)
-                        .TransformWith<BinInfoTitle2Bin>();
-                    nodeBin.Stream.WriteTo(Path.Combine(dirToSave, n.Name.Remove(n.Name.Length - 4) + "_new.bin"));
-
-                    break;
-
                 case FORMATPREFIX + "ALAR.ALAR3":
 
                     // Alar original
@@ -369,6 +401,17 @@
                     BinaryFormat b = (BinaryFormat)ConvertFormat.With<Binary2DIG>(originalDig);
 
                     Utils.Lzss(b, "-evn").Stream.WriteTo(Path.Combine(dirToSave, n.Name + "evn.dig"));
+
+                    break;
+
+                case FORMATPREFIX + "Bin.Deck":
+
+                    Node nodePo = NodeFactory.FromFile(dataToInsert);
+
+                    nodePo.TransformWith<Binary2Po>()
+                    .TransformWith<Po2Deck>()
+                    .TransformWith<Deck2Binary>()
+                    .Stream.WriteTo(Path.Combine(dirToSave, n.Name + "_new.bin"));
 
                     break;
             }

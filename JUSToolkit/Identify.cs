@@ -36,32 +36,33 @@ namespace JUSToolkit
 
             binDictionary = new Dictionary<String, IFormat>
             {
-                { "tutorial0.bin", new BinTutorial() },
-                { "tutorial1.bin", new BinTutorial() },
-                { "tutorial2.bin", new BinTutorial() },
-                { "tutorial3.bin", new BinTutorial() },
-                { "tutorial4.bin", new BinTutorial() },
-                { "tutorial5.bin", new BinTutorial() },
-                { "tutorial.bin", new BinTutorial() },
+                //{ "tutorial0.bin", new BinTutorial() },
+                //{ "tutorial1.bin", new BinTutorial() },
+                //{ "tutorial2.bin", new BinTutorial() },
+                //{ "tutorial3.bin", new BinTutorial() },
+                //{ "tutorial4.bin", new BinTutorial() },
+                //{ "tutorial5.bin", new BinTutorial() },
+                //{ "tutorial.bin", new BinTutorial() },
 
-                { "ability_t.bin", new BinInfoTitle() },
-                { "bgm.bin", new BinInfoTitle() },
-                { "chr_b_t.bin", new BinInfoTitle() },
-                { "chr_s_t.bin", new BinInfoTitle() },
-                { "clearlst.bin", new BinInfoTitle() },
-                { "demo.bin", new BinInfoTitle() },
-                { "infoname.bin", new BinInfoTitle() },
-                { "komatxt.bin", new BinInfoTitle() },
-                { "location.bin", new BinInfoTitle() },
-                { "piece.bin", new BinInfoTitle() },
-                { "rulemess.bin", new BinInfoTitle() },
-                { "stage.bin", new BinInfoTitle() },
-                { "title.bin", new BinInfoTitle() },
-                { "commwin.bin", new BinInfoTitle() },
-                { "pname.bin", new BinInfoTitle() },
-                { "bin-InfoDeck", new BinInfoTitle() },
+                { "ability_t.bin", new Formats.Bin.SimpleBin() },
+                { "bgm.bin", new Formats.Bin.Bgm() },
+                { "chr_b_t.bin", new Formats.Bin.ChrB() },
+                { "chr_s_t.bin", new Formats.Bin.SimpleBin() },
+                { "clearlst.bin", new Formats.Bin.SimpleBin() },
+                { "demo.bin", new Formats.Bin.Demo() },
+                { "infoname.bin", new Formats.Bin.SimpleBin() },
+                { "komatxt.bin", new Formats.Bin.Koma() },
+                { "location.bin", new Formats.Bin.Location() },
+                { "piece.bin", new Formats.Bin.Piece() },
+                { "rulemess.bin", new Formats.Bin.Rulemess() },
+                { "stage.bin", new Formats.Bin.Stage() },
+                { "title.bin", new Formats.Bin.SimpleBin() },
+                { "commwin.bin", new Formats.Bin.Commwin() },
+                { "pname.bin", new Formats.Bin.SimpleBin() },
+                { "bin-deck", new Formats.Bin.Deck() },
+                { "bin-info", new Formats.Bin.Info() }
 
-                { "jquiz.bin", new BinQuiz() },
+                //{ "jquiz.bin", new BinQuiz() },
             };
 
             alarDictionary = new Dictionary<int, IFormat>
@@ -105,7 +106,7 @@ namespace JUSToolkit
                 DefaultEncoding = new Yarhl.Media.Text.Encodings.EscapeOutRangeEncoding("ascii")
             };
             reader.Stream.Position = 0;
-            return reader.ReadString(4) == "DSCP" ? true : false;
+            return reader.ReadString(4) == "DSCP";
 
         }
 
@@ -123,10 +124,13 @@ namespace JUSToolkit
 
         public IFormat GetBinFormat(Node node)
         {
-            Regex regex = new Regex("^bin-.*-.*.bin$");
-            if (regex.IsMatch(node.Name))
+            Regex regexDeck = new Regex("^bin-deck-.*.bin$");
+            Regex regexInfo = new Regex("^bin-info-.*.bin$");
+            if (regexDeck.IsMatch(node.Name))
             {
-                return binDictionary["bin-InfoDeck"];
+                return binDictionary["bin-deck"];
+            }else if(regexInfo.IsMatch(node.Name)){
+                return binDictionary["bin-info"];
             }
             return binDictionary[node.Name];
         }
