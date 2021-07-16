@@ -1,0 +1,130 @@
+﻿#Lines starting with '#' will be ignored
+
+#
+0x00=Shonen Jump
+
+#アイシールド２１
+0x01=Eyeshield 21
+
+#Ｉ″ｓ
+0x02=I's
+
+#いちご１００％
+0x03=Ichigo 100%
+
+#家庭教師ヒットマン　ＲＥＢＯＲＮ！
+0x04=Tutor Hitman Reborn!
+
+#キャプテン翼
+0x05=Oliver y Benji
+
+#銀魂
+0x06=Gintama
+
+#キン肉マン
+0x07=Musculman
+
+#こちら葛飾区亀有公園前派出所
+0x08=Kochikame
+
+#コブラ
+0x09=Cobra
+
+#魁∥男塾
+0x0A=Sakigake!! Otokojuku
+
+#地獄先生ぬ～べ～
+0x0B=Nube, el maestro del infierno
+
+#シャーマンキング
+0x0C=Shaman King
+
+#ジャングルの王者ターちゃん♡
+0x0D=Jungle King Tar-chan
+
+#ジョジョの奇妙な冒険
+0x0E=JoJo's Bizarre Adventure
+
+#ＳＬＡＭ　ＤＵＮＫ
+0x0F=Slam Dunk
+
+#聖闘士星矢
+0x10=Los caballeros del Zodiaco
+
+#太臓もて王サーガ
+0x11=Taizo Mote King Saga
+
+#テニスの王子様
+0x12=The Prince of Tennis
+
+#Ｄ．Ｇｒａｙ－ｍａｎ
+0x13=D. Gray-Man
+
+#ＤＥＡＴＨ　ＮＯＴＥ
+0x14=Death Note
+
+#Ｄｒ．スランプ
+0x15=Dr. Slump
+
+#とっても！ラッキーマン
+0x16=Tottemo! Luckyman
+
+#ＤＲＡＧＯＮ　ＢＡＬＬ
+0x17=Dragon Ball
+
+#ＮＡＲＵＴＯ－ナルト－
+0x18=Naruto
+
+#ＮＩＮＫＵ－忍空－
+0x19=Ninku
+
+#ＨＵＮＴＥＲ×ＨＵＮＴＥＲ
+0x1A=Hunter x Hunter
+
+#ピューと吹く！ジャガー
+0x1B=Pyu to Fuku! Jaguar
+
+#武装錬金
+0x1C=Buso Renkin
+
+#ＢＬＡＣＫ　ＣＡＴ
+0x1D=Black Cat
+
+#ＢＬＥＡＣＨ
+0x1E=Bleach
+
+#封神演義
+0x1F=Hoshin Engi
+
+#北斗の拳
+0x20=El puno de la estrella del norte
+
+#ボボボーボ・ボーボボ
+0x21=Bobobo
+
+#魔人探偵脳噛ネウロ
+0x22=Nogami Neuro, el Detective Demoniaco
+
+#みどりのマキバオー
+0x23=Midori no Makibao
+
+#ムヒョとロージーの魔法律相談事務所
+0x24=Muhyo y Roji
+
+#遊☆戯☆王
+0x25=Yu-Gi-Oh!
+
+#幽★遊★白書
+0x26=Yu Yu Hakusho
+
+#るろうに剣心－明治剣客浪漫譚－
+0x27=Ruroni Kenshin, el guerrero samurai
+
+#ろくでなしＢＬＵＥＳ
+0x28=Rokudenashi Blues
+
+#ＯＮＥ　ＰＩＥＣＥ
+0x29=One Piece
+
+#Ｄｒ．スランプ
+0xFF=Dr. Slump

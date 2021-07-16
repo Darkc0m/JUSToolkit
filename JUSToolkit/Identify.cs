@@ -60,9 +60,8 @@ namespace JUSToolkit
                 { "commwin.bin", new Formats.Bin.Commwin() },
                 { "pname.bin", new Formats.Bin.SimpleBin() },
                 { "bin-deck", new Formats.Bin.Deck() },
-                { "bin-info", new Formats.Bin.Info() }
-
-                //{ "jquiz.bin", new BinQuiz() },
+                { "bin-info", new Formats.Bin.Info() },
+                { "jquiz-jquiz.bin", new Formats.Bin.JQuiz() },
             };
 
             alarDictionary = new Dictionary<int, IFormat>

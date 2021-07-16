@@ -1,23 +1,4 @@
-﻿using JUSToolkit.Converters.Bin;
-using JUSToolkit.Converters.Bin.Bgm;
-using JUSToolkit.Converters.Bin.ChrB;
-using JUSToolkit.Converters.Bin.Commwin;
-using JUSToolkit.Converters.Bin.Deck;
-using JUSToolkit.Converters.Bin.Demo;
-using JUSToolkit.Converters.Bin.Info;
-using JUSToolkit.Converters.Bin.JQuiz;
-using JUSToolkit.Converters.Bin.Koma;
-using JUSToolkit.Converters.Bin.Location;
-using JUSToolkit.Converters.Bin.Piece;
-using JUSToolkit.Converters.Bin.Rulemess;
-using JUSToolkit.Converters.Bin.Stage;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace JUSToolkit.Formats.Bin
+﻿namespace JUSToolkit.Formats.Bin
 {
     public static class DataFactory
     {

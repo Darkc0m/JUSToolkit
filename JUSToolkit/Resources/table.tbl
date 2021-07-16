@@ -1,4 +1,4 @@
-﻿/Lines starting with '/' will be ignored
+﻿#Lines starting with '#' will be ignored
 «=『
 »=』
 ¿=ぁ

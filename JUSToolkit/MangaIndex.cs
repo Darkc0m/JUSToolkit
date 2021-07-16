@@ -1,45 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Yarhl.IO;
-using Yarhl.Media.Text;
 
 namespace JUSToolkit
 {
-    class Table
+    class MangaIndex
     {
-        string tablePath = "C:/Users/msi/source/repos/JUSToolkit/JUSToolkit/Resources/table.tbl";//"../../Resources/table.tbl";
-        Replacer replacer;
-        static Table instance;
+        string indexPath = "../../Resources/JquizMangas.txt";
+        Dictionary<int, string> indexDic;
+        static MangaIndex instance;
 
-        private Table()
+        private MangaIndex()
         {
-            replacer = new Replacer();
+            indexDic = new Dictionary<int, string>();
             readTable();
         }
 
-        public static Table getInstance()
+        public static MangaIndex getInstance()
         {
-            if(instance == null) {
-                instance = new Table();
+            if (instance == null) {
+                instance = new MangaIndex();
             }
 
             return instance;
-        } 
+        }
 
-        public string Encode(string s)
+        public string getMangaName(int index)
         {
-            return replacer.TransformBackward(s);
+            return indexDic[index];
         }
 
         private void readTable()
         {
             string line;
             string[] chars;
-            var reader = new TextReader(DataStreamFactory.FromFile(tablePath, FileOpenMode.Read));
+            var reader = new TextReader(DataStreamFactory.FromFile(indexPath, FileOpenMode.Read));
 
             while (!reader.Stream.EndOfStream) {
                 line = reader.ReadLine();
@@ -49,7 +48,7 @@ namespace JUSToolkit
                     continue;
 
                 chars = line.Split('=');
-                replacer.Add(chars[1], chars[0]);
+                indexDic.Add(Convert.ToInt32(chars[0], 16), chars[1]);
             }
         }
     }

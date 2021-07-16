@@ -27,6 +27,8 @@
     using JUSToolkit.Converters.Bin.Piece;
     using JUSToolkit.Converters.Bin.Piece.Export;
     using JUSToolkit.Converters.Bin.Deck.Import;
+    using JUSToolkit.Converters.Bin.JQuiz;
+    using JUSToolkit.Converters.Bin.JQuiz.Export;
 
     class MainClass
     {
@@ -330,6 +332,15 @@
 
                     break;
 
+                case FORMATPREFIX + "Bin.JQuiz":
+
+                    var container = n.TransformWith<Binary2JQuiz>().GetFormatAs<NodeContainerFormat>();
+                    foreach(Node quiz in container.Root.Children) {
+                        quiz.Stream.WriteTo(Path.Combine(outputPath, quiz.Name));
+                    }
+
+                    break;
+
                 case FORMATPREFIX + "ALAR.ALAR3":
 
                     var folder = n.TransformWith<BinaryFormat2Alar3>()
@@ -412,6 +423,15 @@
                     .TransformWith<Po2Deck>()
                     .TransformWith<Deck2Binary>()
                     .Stream.WriteTo(Path.Combine(dirToSave, n.Name.Substring(0, n.Name.Length - 4) + "_new.bin"));
+
+                    break;
+
+                case FORMATPREFIX + "Bin.JQuiz":
+
+                    using(Node container = NodeFactory.FromDirectory(dataToInsert)) {
+                        container.TransformWith<Nodes2JQuiz>()
+                        .Stream.WriteTo(Path.Combine(dirToSave, n.Name.Substring(0, n.Name.Length - 4) + "_new.bin"));
+                    }
 
                     break;
             }

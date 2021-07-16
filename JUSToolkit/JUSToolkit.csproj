@@ -51,13 +51,16 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=1.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.IO.RecyclableMemoryStream.1.4.0\lib\net46\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
+    <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=2.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.IO.RecyclableMemoryStream.2.1.2\lib\net462\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
     </Reference>
     <Reference Include="netstandard, Version=2.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" />
     <Reference Include="System" />
     <Reference Include="log4net">
       <HintPath>lib\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Composition.AttributedModel, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -77,6 +80,13 @@
     </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
@@ -94,42 +104,31 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Converters\Bin\Bgm\BgmData.cs" />
     <Compile Include="Converters\Bin\Bgm\Export\Bgm2Po.cs" />
     <Compile Include="Converters\Bin\Bgm\Export\Binary2Bgm.cs" />
-    <Compile Include="Converters\Bin\ChrB\ChrBData.cs" />
     <Compile Include="Converters\Bin\ChrB\Export\Binary2ChrB.cs" />
     <Compile Include="Converters\Bin\ChrB\Export\ChrB2Po.cs" />
-    <Compile Include="Converters\Bin\Commwin\CommwinData.cs" />
     <Compile Include="Converters\Bin\Commwin\Export\Binary2Commwin.cs" />
     <Compile Include="Converters\Bin\Commwin\Export\Commwin2Po.cs" />
-    <Compile Include="Converters\Bin\Deck\DeckData.cs" />
     <Compile Include="Converters\Bin\Deck\Export\Binary2Deck.cs" />
     <Compile Include="Converters\Bin\Deck\Export\Deck2Po.cs" />
     <Compile Include="Converters\Bin\Deck\Import\Deck2Binary.cs" />
     <Compile Include="Converters\Bin\Deck\Import\Po2Deck.cs" />
-    <Compile Include="Converters\Bin\Demo\DemoData.cs" />
     <Compile Include="Converters\Bin\Demo\Export\Binary2Demo.cs" />
     <Compile Include="Converters\Bin\Demo\Export\Demo2Po.cs" />
     <Compile Include="Converters\Bin\Info\Export\Binary2Info.cs" />
     <Compile Include="Converters\Bin\Info\Export\Info2Po.cs" />
-    <Compile Include="Converters\Bin\Info\InfoData.cs" />
     <Compile Include="Converters\Bin\JQuiz\Export\Binary2JQuiz.cs" />
-    <Compile Include="Converters\Bin\JQuiz\JquizData.cs" />
+    <Compile Include="Converters\Bin\JQuiz\Export\Nodes2JQuiz.cs" />
     <Compile Include="Converters\Bin\JusBinConverter.cs" />
-    <Compile Include="Converters\Bin\Koma\KomaData.cs" />
     <Compile Include="Converters\Bin\Location\Export\Binary2Location.cs" />
     <Compile Include="Converters\Bin\Location\Export\Location2Po.cs" />
-    <Compile Include="Converters\Bin\Location\LocationData.cs" />
     <Compile Include="Converters\Bin\Piece\Export\Binary2Piece.cs" />
     <Compile Include="Converters\Bin\Piece\Export\Piece2Po.cs" />
-    <Compile Include="Converters\Bin\Piece\PieceData.cs" />
     <Compile Include="Converters\Bin\Rulemess\Export\Binary2Rulemess.cs" />
     <Compile Include="Converters\Bin\Rulemess\Export\Rulemess2Po.cs" />
-    <Compile Include="Converters\Bin\Rulemess\RulemessData.cs" />
     <Compile Include="Converters\Bin\SimpleBin\Binary2SimpleBin.cs" />
     <Compile Include="Converters\Bin\SimpleBin\SimpleBin2Po.cs" />
-    <Compile Include="Converters\Bin\Stage\StageData.cs" />
     <Compile Include="Converters\Images\BinaryDTX2PNG.cs" />
     <Compile Include="Formats\Bin\Bgm.cs" />
     <Compile Include="Formats\Bin\ChrB.cs" />
@@ -138,14 +137,15 @@
     <Compile Include="Formats\Bin\Deck.cs" />
     <Compile Include="Formats\Bin\Demo.cs" />
     <Compile Include="Formats\Bin\Info.cs" />
+    <Compile Include="Formats\Bin\JQuiz.cs" />
     <Compile Include="Formats\Bin\JusFormat.cs" />
     <Compile Include="Formats\Bin\Koma.cs" />
     <Compile Include="Formats\Bin\Location.cs" />
     <Compile Include="Formats\Bin\Piece.cs" />
     <Compile Include="Formats\Bin\Rulemess.cs" />
     <Compile Include="Formats\Bin\SimpleBin.cs" />
-    <Compile Include="Formats\Bin\JusData.cs" />
     <Compile Include="Formats\Bin\Stage.cs" />
+    <Compile Include="MangaIndex.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Identify.cs" />
@@ -168,6 +168,8 @@
     <Compile Include="IntegrationTests\TestData.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Converters\Bin\Koma\" />
+    <Folder Include="Converters\Bin\Stage\" />
     <Folder Include="IntegrationTests\Resources\Alar\" />
   </ItemGroup>
   <ItemGroup>
@@ -186,6 +188,9 @@
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Resources\table.tbl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\JquizMangas.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

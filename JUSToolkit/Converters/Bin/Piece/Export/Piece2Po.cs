@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using JUSToolkit.Formats.Bin;
 using Yarhl.FileFormat;
 using Yarhl.Media.Text;
 
@@ -20,20 +16,20 @@ namespace JUSToolkit.Converters.Bin.Piece.Export
             int i = 0;
             foreach (PieceData d in source.data) {
                 po.Add(new PoEntry(d.title) {
-                    Context = $"{i} Título",
+                    Context = $"{i} - Title",
                     ExtractedComments = $"{d.unknown}-{d.icon}"
                 });
                 po.Add(new PoEntry(d.author) {
-                    Context = $"{i} Autor"
+                    Context = $"{i} - Author(s)"
                 });
                 po.Add(new PoEntry(d.startDate) {
-                    Context = $"{i} Fecha inicio"
+                    Context = $"{i} - Start Date"
                 });
                 po.Add(new PoEntry(d.endDate) {
-                    Context = $"{i} Fecha fin"
+                    Context = $"{i} - End Date"
                 });
                 po.Add(new PoEntry(d.argument) {
-                    Context = $"{i} Argumento"
+                    Context = $"{i} - Argument"
                 });
                 i++;
             }

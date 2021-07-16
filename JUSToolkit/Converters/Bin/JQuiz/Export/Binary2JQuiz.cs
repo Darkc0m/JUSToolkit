@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using JUSToolkit.Formats.Bin;
 using System.Text;
-using System.Threading.Tasks;
 using Yarhl.FileFormat;
 using Yarhl.FileSystem;
 using Yarhl.IO;
@@ -23,13 +20,15 @@ namespace JUSToolkit.Converters.Bin.JQuiz
             };
 
             var reader = new DataReader(source.Stream) {
-                DefaultEncoding = Encoding.GetEncoding("shift_jis")
+                DefaultEncoding = Encoding.GetEncoding("shift_jis"),
             };
             JusData.reader = reader;
+            reader.Stream.Position = 0x00;
             BinaryFormat poBin;
+            var mangaIndex = MangaIndex.getInstance();
             int numQuestions = reader.ReadInt32();
 
-            string currentManga = "Dr. Slump";
+            string currentManga = mangaIndex.getMangaName(0xFF);
             int mangaCount = 0;
 
             for (int i = 0; i < numQuestions; i++) {
@@ -45,18 +44,13 @@ namespace JUSToolkit.Converters.Bin.JQuiz
                     mangaCount++;
                     currentManga = q.manga;
                 }
-                po.Add(new PoEntry(q.photo) {
-                    Context = $"Pregunta {i} foto",
-                    ExtractedComments = $"{q.mangaCode}-{q.unknown}-{q.num}"
+                po.Add(new PoEntry(q.question) { 
+                    Context = $"{i} - Question",
+                    ExtractedComments = $"{q.photo}-{q.mangaCode}-{q.unknown}-{q.num}"
                 });
-                for (int j = 0; j < q.question.Length; j++) {
-                    po.Add(new PoEntry(q.question[j]) {
-                        Context = $"Pregunta {i} enunciado {j}"
-                    });
-                }
                 for (int j = 0; j < q.answers.Length; j++) {
                     po.Add(new PoEntry(q.answers[j]) {
-                        Context = $"Pregunta {i} respuesta {j}"
+                        Context = $"{i} - Answer {j}"
                     });
                 }
             }
